@@ -3,13 +3,10 @@ Course_Catalog_Scraper
 @Copyright: John Pridmore 2017
 '''
 
-import webbrowser
 from contextlib import closing
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import time
-import json
-import csv
 from urllib.parse import urljoin, urlencode, quote_plus
 
 
