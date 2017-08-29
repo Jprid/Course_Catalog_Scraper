@@ -1,0 +1,20 @@
+    # ex. prereqs string:
+    #  12. "None"
+    #  10. "For specific prerequisites, see syllabus or consult with course instructor. (variable credit)"
+    #   7. "PhD status or consent of instructor."
+    #   9. "Instructor consent required."
+
+    #  11. "Permission of instructor."
+    #  13. "Consent of the instructor. (variable credit)"
+    #  14. "CSC 695 taken twice and approval of report by student's research supervisor and faculty advisor. (0 credit hours)"
+    #  15. "Successful defense of a Master's Thesis.  (variable credit)"
+    #  16. "Research course supervised by an instructor. Independent Study Form required.  Variable credit.  Can be repeated for credit. (variable credit)"
+
+    #   6. "CSC 423 or consent of instructor."
+    #   5. "MAT 220 and any introductory programming course."
+    #   8. "MAT 220 and a programming course."
+
+    #   1. "CSC 301 and CSC 373 and CSC 374"
+    #   2. "CSC 301 or CSC 383 or CSC 393"
+    #   3. "(CSC 301 or CSC 383 or CSC 393) and CSC 373"
+    #   4. "(IT 240 or CSC 355)  and (CSC 212 or CSC 242 or CSC 243 or CSC 262 or CSC 224 or CSC 300 or CSC 309)"
