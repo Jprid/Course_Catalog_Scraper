@@ -94,18 +94,6 @@ class scraper(object):
         stores and directs scraper through generating major dictionaries and lists
         :return:
         '''
-
-        # initialize variables for scraping reqs
-        # # 1: IS_bus_an
-        # "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-IS-Business-Systems-Analysis.aspx",
-        # # 2: IS_bus_int
-        # "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-IS-Business-Intelligence.aspx",
-        # # 3: IS_db_admin
-        # "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-IS-Database-Administration.aspx",
-        # # 4: IS_IT_ent_mgr
-        # "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-IS-IT-Enterprise-Management.aspx",
-        # # 5: IS
-        # "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-IS-Standard.aspx"
         ALL = [
             # 0: CS_req_link
             "http://www.cdm.depaul.edu/academics/Pages/Current/Requirements-MS-in-Computer-Science.aspx",
@@ -130,15 +118,9 @@ class scraper(object):
             # bool flag for areas
             has_areas    = False
 
-
-
             result = get_req_span
             if (get_area != []):
                 has_areas = True
-
-            # TODO: remove
-            # [result.append(div) for div in get_req_div]
-            # print(get_req_div)
 
             # if the page in question has collapsed course lists, the major has areas of study/concentration
             if(has_areas):
@@ -171,46 +153,17 @@ class scraper(object):
             with closing(urlopen(link)) as req_page:
                 html = req_page.read()
                 soup = BeautifulSoup(html, "html.parser")
-
                 req_phases, has_area = _get_req_phases(soup)
 
                 # pack the phase titles for each major
-
-                # TODO: REMOVE TEST OF TAG PARENT
-
-                course_lists = [course.findAll('td', {'class': 'CDMExtendedCourseInfo'}) for course in soup.findAll('table',{"class": "courseList"})]
-                clean_courses = [course_to_list(idx) for idx in course_lists if idx != []]
-
+                course_lists     = [course.findAll('td', {'class': 'CDMExtendedCourseInfo'}) 
+                                    for course in soup.findAll('table',{"class": "courseList"})]
+                clean_courses    = [course_to_list(idx) for idx in course_lists if idx != []]
                 pack_nested_reqs = lambda phase, course_list: {'phase': phase, 'courses': course_list}
-
+        
         return reqs_and_courses
-
-
-
-
-    # ex. prereqs string:
-    #  12. "None"
-    #  10. "For specific prerequisites, see syllabus or consult with course instructor. (variable credit)"
-    #   7. "PhD status or consent of instructor."
-    #   9. "Instructor consent required."
-
-    #  11. "Permission of instructor."
-    #  13. "Consent of the instructor. (variable credit)"
-    #  14. "CSC 695 taken twice and approval of report by student's research supervisor and faculty advisor. (0 credit hours)"
-    #  15. "Successful defense of a Master's Thesis.  (variable credit)"
-    #  16. "Research course supervised by an instructor. Independent Study Form required.  Variable credit.  Can be repeated for credit. (variable credit)"
-
-    #   6. "CSC 423 or consent of instructor."
-    #   5. "MAT 220 and any introductory programming course."
-    #   8. "MAT 220 and a programming course."
-
-    #   1. "CSC 301 and CSC 373 and CSC 374"
-    #   2. "CSC 301 or CSC 383 or CSC 393"
-    #   3. "(CSC 301 or CSC 383 or CSC 393) and CSC 373"
-    #   4. "(IT 240 or CSC 355)  and (CSC 212 or CSC 242 or CSC 243 or CSC 262 or CSC 224 or CSC 300 or CSC 309)"
-
-
     #   1. ["CSC", "301","and","CSC", "373", "and", "CSC". "374"]
+    
     @staticmethod
     def prereq_edge_cases(prereqs):
         # if there are no prereqs
